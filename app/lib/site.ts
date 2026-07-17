@@ -1,18 +1,18 @@
 export const site = {
-  name: "NILAYA HOMES",
-  shortName: "NILAYA",
-  tagline: "Furniture for warm, thoughtful living.",
+  name: "TOUCHWOOD Furnitures & Interiors",
+  shortName: "TOUCHWOOD",
+  tagline: "Furniture & interiors made for beautiful living.",
 
   city: "Vijayawada, Andhra Pradesh",
   address: "Demo showroom address — replace before publishing",
-  mapLink: "https://maps.google.com/?q=Demo+showroom+address",
+  mapLink: "",
 
   phoneDisplay: "00000 00000",
   phoneLink: "tel:+910000000000",
 
-  whatsappNumber: "7675041190",
-  whatsappLink: "https://wa.me/917675041190",
+  whatsappNumber: "",
+  whatsappLink: "",
 
-  email: "hello@nilayahomes.example",
+  email: "hello@touchwood.example",
   workingHours: "Mon – Sun: 10:00 AM – 9:00 PM",
 };
