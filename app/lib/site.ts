@@ -1,6 +1,6 @@
 export const site = {
-  name: "TOUCHWOOD Furnitures & Interiors",
-  shortName: "TOUCHWOOD",
+  name: "AURA Furnitures & Interiors",
+  shortName: "AURA",
   tagline: "Furniture & interiors made for beautiful living.",
 
   city: "Vijayawada, Andhra Pradesh",
@@ -13,6 +13,6 @@ export const site = {
   whatsappNumber: "",
   whatsappLink: "",
 
-  email: "hello@touchwood.example",
+  email: "hello@aura.example",
   workingHours: "Mon – Sun: 10:00 AM – 9:00 PM",
 };
