@@ -1,5 +1,8 @@
+"use client";
+
+import Link from "next/link";
+import { FormEvent, useState } from "react";
 import { site } from "../lib/site";
-import Link from "next/link"
 
 const processSteps = [
   {
@@ -29,6 +32,50 @@ const processSteps = [
 ];
 
 export default function CustomFurniturePage() {
+  const [statusMessage, setStatusMessage] = useState("");
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const name = formData.get("name")?.toString() || "";
+    const phone = formData.get("phone")?.toString() || "";
+    const furnitureType = formData.get("furnitureType")?.toString() || "";
+    const room = formData.get("room")?.toString() || "";
+    const measurements = formData.get("measurements")?.toString() || "";
+    const material = formData.get("material")?.toString() || "";
+    const colour = formData.get("colour")?.toString() || "";
+    const budget = formData.get("budget")?.toString() || "";
+    const details = formData.get("details")?.toString() || "";
+
+    const whatsappMessage = encodeURIComponent(
+      `Hello AURA Furnitures & Interiors,
+
+I would like a custom furniture quote.
+
+Name: ${name}
+Phone: ${phone}
+Furniture needed: ${furnitureType}
+Room/Space: ${room}
+Measurements: ${measurements}
+Preferred material: ${material}
+Preferred colour/finish: ${colour}
+Budget range: ${budget}
+
+Requirement details:
+${details}`,
+    );
+
+    setStatusMessage("Opening WhatsApp with your custom furniture request...");
+
+    window.open(
+      `https://wa.me/${site.whatsappNumber}?text=${whatsappMessage}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#1d1b18]">
       <nav className="border-b border-black/5 bg-[#f8f5ef]">
@@ -63,12 +110,12 @@ export default function CustomFurniturePage() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/#contact"
+            <a
+              href="#custom-quote"
               className="rounded-full bg-[#1d1b18] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#9a6d3c]"
             >
               Request a Custom Quote
-            </Link>
+            </a>
 
             <Link
               href="/collections"
@@ -90,6 +137,174 @@ export default function CustomFurniturePage() {
             alt="Modern custom wardrobe"
             className="mt-12 h-80 w-full rounded-2xl object-cover shadow-xl shadow-black/10"
           />
+        </div>
+      </section>
+
+      <section
+        id="custom-quote"
+        className="border-y border-black/5 bg-white py-16 sm:py-24"
+      >
+        <div className="mx-auto max-w-4xl px-5 lg:px-8">
+          <div className="text-center">
+            <p className="text-xs font-bold tracking-[0.22em] text-[#9a6d3c]">
+              CUSTOM ORDER REQUEST
+            </p>
+
+            <h2 className="mt-4 font-serif text-4xl tracking-tight sm:text-5xl">
+              Tell us what you want to create.
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl leading-7 text-[#625d56]">
+              Fill in your requirements. WhatsApp will open with all your details
+              ready to send directly to the AURA team.
+            </p>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="mt-10 rounded-3xl bg-[#f8f5ef] p-6 sm:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="text-sm font-semibold">
+                Your Name
+                <input
+                  required
+                  name="name"
+                  type="text"
+                  placeholder="Enter your name"
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                />
+              </label>
+
+              <label className="text-sm font-semibold">
+                Phone Number
+                <input
+                  required
+                  name="phone"
+                  type="tel"
+                  inputMode="numeric"
+                  placeholder="Enter your phone number"
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                />
+              </label>
+
+              <label className="text-sm font-semibold">
+                Furniture You Need
+                <select
+                  required
+                  name="furnitureType"
+                  defaultValue=""
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                >
+                  <option value="" disabled>
+                    Select furniture type
+                  </option>
+                  <option>Wardrobe</option>
+                  <option>Modular Kitchen</option>
+                  <option>TV Unit</option>
+                  <option>Sofa</option>
+                  <option>Bed</option>
+                  <option>Dining Table</option>
+                  <option>Study Table</option>
+                  <option>Office Furniture</option>
+                  <option>Complete Home Interiors</option>
+                  <option>Other</option>
+                </select>
+              </label>
+
+              <label className="text-sm font-semibold">
+                Room / Space
+                <input
+                  required
+                  name="room"
+                  type="text"
+                  placeholder="Example: Master bedroom"
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                />
+              </label>
+
+              <label className="text-sm font-semibold">
+                Measurements
+                <input
+                  name="measurements"
+                  type="text"
+                  placeholder="Example: 8 ft × 7 ft"
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                />
+              </label>
+
+              <label className="text-sm font-semibold">
+                Preferred Material
+                <select
+                  name="material"
+                  defaultValue=""
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                >
+                  <option value="">Not decided yet</option>
+                  <option>Plywood</option>
+                  <option>Solid Wood</option>
+                  <option>MDF</option>
+                  <option>Particle Board</option>
+                  <option>Steel</option>
+                  <option>Other / Need guidance</option>
+                </select>
+              </label>
+
+              <label className="text-sm font-semibold">
+                Preferred Colour / Finish
+                <input
+                  name="colour"
+                  type="text"
+                  placeholder="Example: Walnut brown / White"
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                />
+              </label>
+
+              <label className="text-sm font-semibold">
+                Budget Range
+                <select
+                  name="budget"
+                  defaultValue=""
+                  className="mt-2 w-full rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+                >
+                  <option value="">Not decided yet</option>
+                  <option>Below ₹25,000</option>
+                  <option>₹25,000 – ₹50,000</option>
+                  <option>₹50,000 – ₹1,00,000</option>
+                  <option>Above ₹1,00,000</option>
+                </select>
+              </label>
+            </div>
+
+            <label className="mt-5 block text-sm font-semibold">
+              Tell us more about your requirement
+              <textarea
+                required
+                name="details"
+                rows={6}
+                placeholder="Describe the design, storage needs, style, delivery location, or anything else you need."
+                className="mt-2 w-full resize-none rounded-xl border border-[#1d1b18]/15 bg-white px-4 py-3 outline-none transition focus:ring-2 focus:ring-[#9a6d3c]/20"
+              />
+            </label>
+
+            <p className="mt-4 text-sm leading-6 text-[#625d56]">
+              You can also send room photos, measurements, or inspiration images
+              after WhatsApp opens.
+            </p>
+
+            <button
+              type="submit"
+              className="mt-6 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-bold text-[#102b18] transition hover:bg-[#7ee89e]"
+            >
+              Send Custom Request on WhatsApp
+            </button>
+
+            {statusMessage ? (
+              <p className="mt-4 text-sm leading-6 text-[#625d56]">
+                {statusMessage}
+              </p>
+            ) : null}
+          </form>
         </div>
       </section>
 
@@ -117,30 +332,6 @@ export default function CustomFurniturePage() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-4xl px-5 text-center">
-          <p className="text-xs font-bold tracking-[0.22em] text-[#9a6d3c]">
-            YOUR IDEA, OUR CRAFT
-          </p>
-
-          <h2 className="mt-4 font-serif text-4xl tracking-tight sm:text-5xl">
-            Ready to create something personal?
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-[#625d56]">
-            Share your requirement with the {site.name} team. We will help you
-            choose the right furniture design, material, dimensions, and finish.
-          </p>
-
-          <Link
-            href="/#contact"
-            className="mt-8 inline-block rounded-full bg-[#1d1b18] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#9a6d3c]"
-          >
-            Talk to Our Team
-          </Link>
         </div>
       </section>
     </main>

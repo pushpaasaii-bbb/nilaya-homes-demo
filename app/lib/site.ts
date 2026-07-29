@@ -3,16 +3,17 @@ export const site = {
   shortName: "AURA",
   tagline: "Furniture & interiors made for beautiful living.",
 
-  city: "Vijayawada, Andhra Pradesh",
-  address: "Demo showroom address — replace before publishing",
-  mapLink: "",
+  city: "Naidupeta, Andhra Pradesh",
+  address: "AURA Street/Area, Naidupeta, Andhra Pradesh – 524126",
+  mapLink: "https://maps.app.goo.gl/MZkYKBY1mYbtroYq7",
 
-  phoneDisplay: "00000 00000",
-  phoneLink: "tel:+910000000000",
+  phoneDisplay: "80084 46220",
+  phoneLink: "tel:+918008446220",
 
-  whatsappNumber: "",
-  whatsappLink: "",
+  whatsappNumber: "918008446220",
+  whatsappLink:
+    "https://wa.me/918008446220?text=Hello%20AURA%20Furnitures%20%26%20Interiors%2C%20I%20would%20like%20to%20enquire.",
 
-  email: "hello@aura.example",
-  workingHours: "Mon – Sun: 10:00 AM – 9:00 PM",
+  email: "pushpaasaii@gmail.com",
+  workingHours: "Open 24/7",
 };
